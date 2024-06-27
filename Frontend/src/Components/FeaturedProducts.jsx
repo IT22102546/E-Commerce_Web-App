@@ -71,6 +71,7 @@ export default function FeaturedProducts() {
                     <p className="text-md text-gray-600 max-w-md">
                         Discover our featured products selected for their outstanding quality and design. These items are sure to enhance your home decor.
                     </p>
+                    
                 </div>
                 <Link>
                     <Carousel />

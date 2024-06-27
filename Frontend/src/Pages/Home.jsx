@@ -1,5 +1,6 @@
 import Categories from '../Components/Categories';
 import FeaturedProducts from '../Components/FeaturedProducts';
+import MostPopularProducts from '../Components/MostPopularProducts';
 
 
 export default function Home() {
@@ -38,7 +39,7 @@ export default function Home() {
 
       <Categories />
 
-      {/* Other Sections (Placeholder for now) */}
+      <MostPopularProducts/>
       <div className="bg-white py-16">
       
       </div>
