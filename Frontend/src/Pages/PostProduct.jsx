@@ -76,7 +76,7 @@ export default function PostProduct() {
             <span>Available Quantity: {product.quantity}</span>
           </div>
           <div className="flex items-center mt-4 gap-2">
-            <Button className ="bg-slate-400" onClick={() => handleQuantityChange(-1)}>
+            <Button className="bg-slate-400" onClick={() => handleQuantityChange(-1)}>
               <FaMinus />
             </Button>
             <TextInput
@@ -86,11 +86,14 @@ export default function PostProduct() {
               onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value)))}
               className="w-16 text-center"
             />
-            <Button className ="bg-slate-400"onClick={() => handleQuantityChange(1)}>
+            <Button className="bg-slate-400" onClick={() => handleQuantityChange(1)}>
               <FaPlus />
             </Button>
           </div>
-          <Button className="bg-slate-400 mt-4">Add to Cart</Button>
+          <div className="flex justify-center gap-4 mt-4">
+            <Button className="bg-slate-400">Add to Cart</Button>
+            <Button className="bg-slate-400">Buy Product</Button>
+          </div>
         </div>
       </div>
       <div className="mt-10">
