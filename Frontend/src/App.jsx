@@ -8,6 +8,7 @@ import SignUp from './Pages/SignUp';
 import SignIn from './Pages/SignIn';
 import PrivateRoute from './Components/PrivateRoute';
 import DashBoard from './Pages/DashBoard';
+import OnlyAdminPrivateRoute from './Components/OnlyAdminPrivateRoute';
 
 export default function App() {
   return (
@@ -17,10 +18,15 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/sign-in" element={<SignIn/>}/>
-        <Route element={<PrivateRoute/>}/>
-        <Route path="/dashboard" element={<DashBoard/>}/> 
-        <Route path="/addproduct" element={<AddProducts />} />
         <Route path="/product/:productSlug" element={<PostProduct />} />
+        <Route element={<PrivateRoute/>}/>
+          <Route path="/dashboard" element={<DashBoard/>}/> 
+        <Route/> 
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path="/addproduct" element={<AddProducts />} />
+        </Route>
+       
+
       </Routes>
       <Footer />
     </BrowserRouter>
