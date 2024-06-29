@@ -2,7 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import productRoute from "./routes/products.route.js";
+import authRoute from "./routes/auth.route.js"
 import cors from "cors";
+import cookieParser from "cookie-parser";
+import userRoute from "./routes/user.route.js"
 
 dotenv.config();
 
@@ -13,6 +16,7 @@ mongoose.connect(process.env.MONGO).then(()=>{
 });
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 
 app.listen(3000,()=>{
@@ -24,10 +28,17 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.use("/api/auth",authRoute);
+app.use("/api/user",userRoute); 
 app.use("/api/products", productRoute);
 
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Internal Server Error' });
-});
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+    return res.status(statusCode).json({
+        success:false,
+        message,
+        statusCode
+    });
+})
