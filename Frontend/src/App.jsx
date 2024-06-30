@@ -9,6 +9,8 @@ import SignIn from './Pages/SignIn';
 import PrivateRoute from './Components/PrivateRoute';
 import DashBoard from './Pages/DashBoard';
 import OnlyAdminPrivateRoute from './Components/OnlyAdminPrivateRoute';
+import UpdateProducts from './Pages/UpdateProduct';
+import ProductPage from './Pages/ProductPage';
 
 export default function App() {
   return (
@@ -18,12 +20,15 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/sign-in" element={<SignIn/>}/>
+        <Route path="/product-page" element={<ProductPage/>}/>
+
         <Route path="/product/:productSlug" element={<PostProduct />} />
         <Route element={<PrivateRoute/>}/>
           <Route path="/dashboard" element={<DashBoard/>}/> 
         <Route/> 
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path="/addproduct" element={<AddProducts />} />
+          <Route path="/update-product/:productId" element={<UpdateProducts/>}/>
         </Route>
        
 

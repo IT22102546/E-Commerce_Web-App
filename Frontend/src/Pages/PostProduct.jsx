@@ -12,7 +12,7 @@ export default function PostProduct() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProduct = async () => {
       try {
         setLoading(true);
         const res = await fetch(`/api/products/getproducts?slug=${productSlug}`);
@@ -38,7 +38,8 @@ export default function PostProduct() {
         setLoading(false);
       }
     };
-    fetchProducts();
+    
+    fetchProduct();
   }, [productSlug]);
 
   const handleQuantityChange = (amount) => {

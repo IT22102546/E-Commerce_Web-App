@@ -239,7 +239,8 @@ export default function DashProfile() {
           <Link to='/addproduct'>
             <Button
               type='button'
-              className='w-full , text-black '
+               gradientDuoTone='purpleToBlue'
+              className='w-full , text-black bg-slate-400 '
               outline
             >
               Add products

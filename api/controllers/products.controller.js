@@ -25,28 +25,79 @@ export const create = async (req, res, next) => {
 }
 export const getProducts = async (req, res, next) => {
   try {
+    const { slug, searchTerm, page = 1, limit = 9, category, priceRange } = req.query;
     const queryOptions = {};
-    
-    if (req.query.slug) {
-      queryOptions.slug = req.query.slug;
+
+    if (slug) {
+      queryOptions.slug = slug;
     }
 
-    const products = await Product.find(queryOptions);
-    
-    if (products.length === 0) {
-      return res.status(404).json({ message: 'Product not found' });
+    if (searchTerm) {
+      queryOptions.title = { $regex: searchTerm, $options: 'i' };
     }
 
-    const totalProducts = await Product.countDocuments();
-    const now = new Date();
-    const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-    const lastMonthProducts = await Product.countDocuments({ createdAt: { $gte: oneMonthAgo } });
+    if (category) {
+      queryOptions.category = category;
+    }
+
+    if (priceRange) {
+      const [minPrice, maxPrice] = priceRange.split('-').map(Number);
+      queryOptions.price = { $gte: minPrice, $lte: maxPrice };
+    }
+
+    const totalProducts = await Product.countDocuments(queryOptions);
+    const products = await Product.find(queryOptions)
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
 
     res.status(200).json({
       products,
       totalProducts,
-      lastMonthProducts,
+      totalPages: Math.ceil(totalProducts / limit),
+      currentPage: Number(page),
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+export const updateProduct = async (req, res, next) => {
+  try {
+    if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+      return next(errorHandler(403, 'You are not allowed to update this post'));
+    }
+    if (!req.body.title || !req.body.description || !req.body.price || !req.body.quantity) {
+      return next(errorHandler(400, 'Please provide all required fields'));
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.productId,
+      {
+        $set: {
+          title: req.body.title,
+          description: req.body.description,
+          category: req.body.category,
+          images: req.body.images,
+          price: req.body.price,
+          quantity: req.body.quantity,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteproduct = async (req, res, next) => {
+  try {
+    if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+      return next(errorHandler(403, 'You are not allowed to delete this post'));
+    }
+    await Product.findByIdAndDelete(req.params.productId);
+    res.status(200).json('The product has been deleted');
   } catch (error) {
     next(error);
   }

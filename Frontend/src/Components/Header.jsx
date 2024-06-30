@@ -55,6 +55,15 @@ export default function Header() {
             Contact Us
           </NavLink>
           <NavLink 
+            to="/product-page" 
+            className={({ isActive }) => 
+              isActive ? "text-black" : "text-white"
+            }
+          >
+            Products
+          </NavLink>
+          
+          <NavLink 
             to="/blogs" 
             className={({ isActive }) => 
               isActive ?"text-black" : "text-white"
