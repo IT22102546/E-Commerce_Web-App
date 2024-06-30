@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export default function ProductPage() {
-  const { currentUser } = useSelector((state) => state.user);
+  //const { currentUser } = useSelector((state) => state.user);
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
