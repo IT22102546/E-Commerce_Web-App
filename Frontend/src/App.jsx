@@ -13,6 +13,8 @@ import UpdateProducts from './Pages/UpdateProduct';
 import ProductPage from './Pages/ProductPage';
 import Cart from './Pages/Cart';
 import Ordersummary from './Pages/Ordersummary';
+import UpdateOrder from './Pages/UpdateOrder';
+import CheckoutSuccess from './Pages/CheckoutSuccess';
 
 export default function App() {
   return (
@@ -29,11 +31,13 @@ export default function App() {
           <Route path="/dashboard" element={<DashBoard/>}/> 
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/order-summary" element={<Ordersummary/>}/>
+          <Route path="/order-pay-success" element={<CheckoutSuccess/>}/>
         <Route/> 
 
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path="/addproduct" element={<AddProducts />} />
           <Route path="/update-product/:productId" element={<UpdateProducts/>}/>
+          <Route path="/update-order/:orderId" element={<UpdateOrder/>}/>
         </Route>
        
 

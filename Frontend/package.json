@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
+    "boxicons": "^2.1.4",
     "firebase": "^10.12.2",
     "flowbite": "^2.4.1",
     "flowbite-react": "^0.10.1",
