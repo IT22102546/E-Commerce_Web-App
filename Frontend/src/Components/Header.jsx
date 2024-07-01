@@ -4,10 +4,12 @@ import { HiShoppingBag, HiUser } from 'react-icons/hi';
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../redux/user/userSlice";
 
+
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+ 
 
   const handleSignOut = async () => {
     try {
@@ -96,15 +98,14 @@ export default function Header() {
              
                   </Link>
                 )}
-          <NavLink 
-            to="/cart" 
-            className={({ isActive }) => 
-              isActive ? "text-black": "text-white"
-            }
-          >
-             <HiShoppingBag className="mr-1" style={{ fontSize: '24px' }} />
-     
-          </NavLink>
+          {currentUser && (
+            <Link to="/cart">
+              <div className="flex relative">
+              <HiShoppingBag className="mr-1" style={{ fontSize: '24px' }} />
+                 
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </Navbar>
