@@ -102,3 +102,46 @@ export const deleteproduct = async (req, res, next) => {
     next(error);
   }
 };
+
+export const featureProduct = async (req, res, next) => {
+  try {
+    if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+      return next(errorHandler(403, 'You are not allowed to update this product'));
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.productId,
+      { $set: { isfeature: true } },
+      { new: true }
+    );
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const unfeatureProduct = async (req, res, next) => {
+  try {
+    if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+      return next(errorHandler(403, 'You are not allowed to update this product'));
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.productId,
+      { $set: { isfeature: false } },
+      { new: true }
+    );
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getFeaturedProducts = async (req, res, next) => {
+  try {
+    const featuredProducts = await Product.find({ isfeature: true });
+    res.status(200).json(featuredProducts);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -114,6 +114,52 @@ export default function DashProduct() {
     generatePDFReport();
   };
 
+  const handleAssignFeature = async (productId) => {
+    try {
+      const res = await fetch(`/api/products/featureproduct/${productId}/${currentUser._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUserProduct((prev) =>
+          prev.map((product) =>
+            product._id === productId ? { ...product, isfeature: true } : product
+          )
+        );
+      } else {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleReassignFeature = async (productId) => {
+    try {
+      const res = await fetch(`/api/products/unfeatureproduct/${productId}/${currentUser._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUserProduct((prev) =>
+          prev.map((product) =>
+            product._id === productId ? { ...product, isfeature: false } : product
+          )
+        );
+      } else {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       <div className='flex justify-between'>
@@ -166,6 +212,7 @@ export default function DashProduct() {
               <Table.HeadCell>Product Title</Table.HeadCell>
               <Table.HeadCell>Category</Table.HeadCell>
               <Table.HeadCell>Stock Level</Table.HeadCell>
+              <Table.HeadCell>Feature</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
               <Table.HeadCell>Edit</Table.HeadCell>
             </Table.Head>
@@ -192,6 +239,17 @@ export default function DashProduct() {
                     <span className={product.quantity < 5 ? 'text-red-500' : 'text-green-500'}>
                       {product.quantity < 5 ? 'Low Stock' : 'In Stock'}
                     </span>
+                  </Table.Cell>
+                  <Table.Cell>
+                    {product.isfeature ? (
+                      <Button color='failure' onClick={() => handleReassignFeature(product._id)}>
+                        Reassign from Feature
+                      </Button>
+                    ) : (
+                      <Button color='success' onClick={() => handleAssignFeature(product._id)}>
+                        Assign as Feature
+                      </Button>
+                    )}
                   </Table.Cell>
                   <Table.Cell>
                     <span className='font-medium text-red-500 hover:underline cursor-pointer'

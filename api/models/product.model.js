@@ -51,6 +51,10 @@ const productSchema = new mongoose.Schema(
     reviews: {
       type: String,
     },
+    isfeature:{
+        type: Boolean,
+        default:false
+    }
   },
   { timestamps: true }
 );
