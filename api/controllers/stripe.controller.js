@@ -19,7 +19,7 @@ export const createSession = async (req, res) => {
     items: cartItems.map(item => ({
       _id: item._id,
       title: item.title,
-      images: [item.image],
+      images: [item.mainImage],
       cartTotalQuantity: item.cartTotalQuantity
     }))
   };
@@ -128,6 +128,7 @@ const createOrder = async (customer, data) => {
       _id: item._id,
       title: item.title,
       cartTotalQuantity: item.cartTotalQuantity,
+      mainImage: item.images[0],
     }));
 
     const newOrder = new Order({
@@ -136,6 +137,7 @@ const createOrder = async (customer, data) => {
       productsId: items.map(item => ({
         id: item._id,
         title: item.title,
+        mainImage: item.mainImage, 
         quantity: item.cartTotalQuantity
       })),
       first_name: data.customer_details.name.split(' ')[0],

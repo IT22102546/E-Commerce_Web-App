@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 const PayButton = ({ cartItems, cartTotalAmount, deliveryfee }) => {
+    const {currentUser} = useSelector((state) =>state.user);
     const handleCheckout = async () => {
       try {
         const response = await fetch('/api/stripe/create-checkout-session', {
@@ -10,6 +13,7 @@ const PayButton = ({ cartItems, cartTotalAmount, deliveryfee }) => {
             cartItems,
             cartTotalAmount,
             deliveryfee,
+            userId: currentUser._id,
           }),
         });
   
