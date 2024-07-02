@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
+    "@stripe/stripe-js": "^4.0.0",
     "boxicons": "^2.1.4",
     "firebase": "^10.12.2",
     "flowbite": "^2.4.1",
@@ -26,7 +27,8 @@
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "stripe": "^16.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

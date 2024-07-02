@@ -4,13 +4,11 @@ import { mongoose } from "mongoose";
 import { errorHandler } from "../utils/error.js";
 
 //test order
-export const testOrder = (req, res) => {
-    res.json({ msg: "Order works" });
-}
+
 
 //create new order
 export const createOrder = async (req, res,next)=>{
-    if (!req.body.userId || !req.body.productsId || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.phone || !req.body.address ||!req.body.city || !req.body.zip  || !req.body.subtotal || !req.body.deliveryfee || !req.body.totalcost ) {
+    if (!req.body.userId || !req.body.productsId || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.phone || !req.body.address ||!req.body.state || !req.body.zip  || !req.body.subtotal || !req.body.deliveryfee || !req.body.totalcost ) {
         return next(errorHandler(400, 'Please provide all required fields'));
       }
 
@@ -21,7 +19,7 @@ export const createOrder = async (req, res,next)=>{
       const email = req.body.email;
       const phone = req.body.phone;
       const address = req.body.address;
-      const city = req.body.city;
+      const state = req.body.state;
       const zip = req.body.zip;
       const subtotal = req.body.subtotal;
       const deliveryfee = req.body.deliveryfee;
@@ -37,7 +35,7 @@ export const createOrder = async (req, res,next)=>{
 
       const newOrder = new Order({
         orderId,userId,productsId,first_name,last_name,email,phone,
-        address,city,zip,subtotal,deliveryfee,totalcost
+        address,state,zip,subtotal,deliveryfee,totalcost
       })
 
       try {
@@ -113,6 +111,7 @@ export const deleteOrder = async(req, res ,next)=>{
       }
 }
 
+
 export const getOrdersByCustomerId = async (req, res, next) => {
     try {
       const customerId = req.params.id;
@@ -124,4 +123,3 @@ export const getOrdersByCustomerId = async (req, res, next) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   };
-

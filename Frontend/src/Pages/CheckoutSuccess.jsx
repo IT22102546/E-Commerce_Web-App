@@ -1,11 +1,8 @@
-import { useDispatch} from "react-redux";
-import { clearCart } from "../redux/cart/cartSlice";
-import { Link } from "react-router-dom";
+
+import { Link} from 'react-router-dom';
 
 export default function CheckoutSuccess() {
-  const dispatch = useDispatch();
 
-  dispatch(clearCart());
 
   return (
     <div className="">
@@ -16,37 +13,36 @@ export default function CheckoutSuccess() {
       </div>
       
       <div className="flex flex-wrap justify-center gap-20 pb-56 pt-5">
-      <Link to="/">
-        <button className="rounded-full py-4 px-6 w-full max-w-[280px]  flex items-center bg-indigo-50 justify-center transition-all duration-500 hover:bg-indigo-100">
-          <span className="px-2 font-semibold text-lg leading-8 text-indigo-600 font-cinzel">
-            Go back to Home
-          </span>
-         
-        </button>
-      </Link>
+        <Link to="/">
+          <button className="rounded-full py-4 px-6 w-full max-w-[280px] flex items-center bg-indigo-50 justify-center transition-all duration-500 hover:bg-indigo-100">
+            <span className="px-2 font-semibold text-lg leading-8 text-indigo-600 font-cinzel">
+              Go back to Home
+            </span>
+          </button>
+        </Link>
 
-      <Link to="/products">
-        <button className="rounded-full py-4 px-6 w-full max-w-[280px]  flex items-center bg-indigo-50 justify-center transition-all duration-500 hover:bg-indigo-100">
-          <span className="px-2 font-semibold text-lg leading-8 text-indigo-600 font-cinzel">
-            Continue Shopping
-          </span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-          >
-            <path
-              d="M8.25324 5.49609L13.7535 10.9963L8.25 16.4998"
-              stroke="#4F46E5"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-      </Link>
+        <Link to="/products">
+          <button className="rounded-full py-4 px-6 w-full max-w-[280px] flex items-center bg-indigo-50 justify-center transition-all duration-500 hover:bg-indigo-100">
+            <span className="px-2 font-semibold text-lg leading-8 text-indigo-600 font-cinzel">
+              Continue Shopping
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+            >
+              <path
+                d="M8.25324 5.49609L13.7535 10.9963L8.25 16.4998"
+                stroke="#4F46E5"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </Link>
       </div>
     </div>
   );
