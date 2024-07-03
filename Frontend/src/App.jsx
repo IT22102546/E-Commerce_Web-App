@@ -16,6 +16,7 @@ import Ordersummary from './Pages/Ordersummary';
 import UpdateOrder from './Pages/UpdateOrder';
 import CheckoutSuccess from './Pages/CheckoutSuccess';
 import Categories from './Components/Categories';
+import CategoryPage from './Pages/CategoryPage';
 
 export default function App() {
   return (
@@ -28,6 +29,8 @@ export default function App() {
         <Route path="/product-page" element={<ProductPage/>}/>
         <Route path="/" element={<Categories />} />
         <Route path="/product/:productSlug" element={<PostProduct />} />
+        <Route path="/category" element={<CategoryPage />} />
+
 
         <Route element={<PrivateRoute/>}/>
           <Route path="/dashboard" element={<DashBoard/>}/> 

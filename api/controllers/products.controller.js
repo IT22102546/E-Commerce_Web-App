@@ -145,3 +145,29 @@ export const getFeaturedProducts = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getProductsByCategory = async (req, res, next) => {
+  try {
+    const { category, page = 1, limit = 9 } = req.query;
+
+    if (!category) {
+      return res.status(400).json({ message: 'Category is required' });
+    }
+
+    const queryOptions = { category };
+
+    const totalProducts = await Product.countDocuments(queryOptions);
+    const products = await Product.find(queryOptions)
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    res.status(200).json({
+      products,
+      totalProducts,
+      totalPages: Math.ceil(totalProducts / limit),
+      currentPage: Number(page),
+    });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -41,7 +41,7 @@ export default function Header() {
             Home
           </NavLink>
           <NavLink 
-            to="/categories" 
+            to="/category" 
             className={({ isActive }) => 
               isActive ? "text-black" : "text-white"
             }
