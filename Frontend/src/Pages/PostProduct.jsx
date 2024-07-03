@@ -109,7 +109,7 @@ export default function PostProduct() {
           </div>
           <div className="flex justify-center gap-4 mt-4">
             <button
-              className="block w-full text-center py-2 mt-2 bg-white border border-rose-400 text-black hover:bg-rose-400 rounded hover:border-rose-300 hover:text-white hover:font-semibold"
+              className="block w-full text-center py-2 mt-2 bg-slate-200 border border-slate-200 text-black hover:bg-slate-400 rounded hover:border-slate-300 hover:text-white hover:font-semibold"
               onClick={handleAddToCart}
             >
               Add to Cart
