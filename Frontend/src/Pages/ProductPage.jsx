@@ -56,7 +56,7 @@ export default function ProductPage() {
           <div className="mb-6">
             <h2 className="text-lg font-bold mb-4">Categories</h2>
             <ul>
-              {['BedRoomFurniture', 'LivingRoomFurniture', 'DiningRoomFurniture', 'SofaSets'].map(category => (
+              {['BedRoomFurniture', 'LivingRoomFurniture', 'DinningRoomFurniture', 'SofaSets'].map(category => (
                 <li
                   key={category}
                   onClick={() => handleCategoryChange(category)}

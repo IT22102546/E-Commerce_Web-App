@@ -12,6 +12,7 @@ export default function PostProduct() {
   const [error, setError] = useState(null);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [notification, setNotification] = useState({ visible: false, message: '' });
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);
 
@@ -53,10 +54,17 @@ export default function PostProduct() {
   const handleAddToCart = () => {
     if (user) {
       dispatch(addToCart({ product, userId: user.id }));
+      showNotification('Product added to the cart');
     } else {
-      // Handle the case when the user is not logged in
       console.log('User not logged in');
     }
+  };
+
+  const showNotification = (message) => {
+    setNotification({ visible: true, message });
+    setTimeout(() => {
+      setNotification({ visible: false, message: '' });
+    }, 3000);
   };
 
   if (loading) {
@@ -69,6 +77,11 @@ export default function PostProduct() {
 
   return (
     <div className="p-3 max-w-5xl mx-auto min-h-screen">
+      {notification.visible && (
+        <div className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-md">
+          {notification.message}
+        </div>
+      )}
       <div className="flex flex-col sm:flex-row gap-6">
         <div className="flex flex-col gap-4 sm:w-1/3">
           {product.images &&
@@ -89,7 +102,7 @@ export default function PostProduct() {
           <h1 className="text-3xl my-7 font-semibold">{product.title}</h1>
           <p>{product.description}</p>
           <div className="flex flex-col gap-4 sm:flex-row justify-between mt-4">
-            <span>Price: ${product.price}</span>
+            <span>Price: Rs. {product.price}</span>
             <span>Available Quantity: {product.quantity}</span>
           </div>
           <div className="flex items-center mt-4 gap-2">
@@ -145,7 +158,7 @@ export default function PostProduct() {
                   className="w-full h-48 object-cover mb-4"
                 />
                 <h3 className="text-lg font-semibold">{similarProduct.title}</h3>
-                <span>Price: ${similarProduct.price}</span>
+                <span>Price: Rs. {similarProduct.price}</span>
               </div>
             ))}
         </div>

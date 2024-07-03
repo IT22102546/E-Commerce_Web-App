@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeFromCart, decreaseCart, getCartTotal, addToCart, clearCart } from "../redux/cart/cartSlice";
+import { Button } from "flowbite-react";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user.currentUser); 
+  const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
-
   const deliveryFee = 300;
+
+  const [descriptionVisibility, setDescriptionVisibility] = useState({});
 
   useEffect(() => {
     if (user) {
@@ -18,15 +20,15 @@ export default function Cart() {
 
   const handleRemoveFromCart = (cartItem) => {
     dispatch(removeFromCart({ ...cartItem, userId: user.id }));
-  }
+  };
 
   const handleDecreaseCart = (cartItem) => {
     dispatch(decreaseCart({ ...cartItem, userId: user.id }));
-  }
+  };
 
   const handleIncreaseCart = (cartItem) => {
     dispatch(addToCart({ product: cartItem, userId: user.id }));
-  }
+  };
 
   const handleClearCart = () => {
     const confirmation = window.confirm('Are you sure you want to clear the cart?');
@@ -35,7 +37,14 @@ export default function Cart() {
     } else {
       console.log("Cart is not cleared!");
     }
-  }
+  };
+
+  const handleToggleDescription = (productId) => {
+    setDescriptionVisibility(prevState => ({
+      ...prevState,
+      [productId]: !prevState[productId]
+    }));
+  };
 
   const userCartItems = cart.cartItems.filter(cartItem => cartItem.userId === user.id);
 
@@ -107,6 +116,15 @@ export default function Cart() {
                             <div>
                               <h3 className="font-semibold text-base leading-6 font-cinzel">{cartItem.title}</h3>
                               <p className="font-bold text-sm mt-2 font-cinzel">Rs. {cartItem.price}</p>
+                              <Button 
+                                onClick={() => handleToggleDescription(cartItem._id)}
+                                className="mt-2 text-white  bg-black"
+                              >
+                                {descriptionVisibility[cartItem._id] ? 'Hide' : 'About Product'}
+                              </Button>
+                              {descriptionVisibility[cartItem._id] && (
+                                <p className="mt-2 text-gray-700 font-cinzel">{cartItem.description}</p>
+                              )}
                             </div>
                           </div>
                         </div>
