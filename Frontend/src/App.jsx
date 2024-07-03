@@ -15,6 +15,7 @@ import Cart from './Pages/Cart';
 import Ordersummary from './Pages/Ordersummary';
 import UpdateOrder from './Pages/UpdateOrder';
 import CheckoutSuccess from './Pages/CheckoutSuccess';
+import Categories from './Components/Categories';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/product-page" element={<ProductPage/>}/>
+        <Route path="/" element={<Categories />} />
         <Route path="/product/:productSlug" element={<PostProduct />} />
 
         <Route element={<PrivateRoute/>}/>

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-//import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 export default function ProductPage() {
-  //const { currentUser } = useSelector((state) => state.user);
+  const location = useLocation();
+  const { category } = queryString.parse(location.search);
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(category || '');
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
 
   useEffect(() => {
@@ -55,7 +56,7 @@ export default function ProductPage() {
           <div className="mb-6">
             <h2 className="text-lg font-bold mb-4">Categories</h2>
             <ul>
-              {['BedRoomFurniture', 'LivingRoomFurniture', 'DinningRoomFurniture', 'SofaSets'].map(category => (
+              {['BedRoomFurniture', 'LivingRoomFurniture', 'DiningRoomFurniture', 'SofaSets'].map(category => (
                 <li
                   key={category}
                   onClick={() => handleCategoryChange(category)}

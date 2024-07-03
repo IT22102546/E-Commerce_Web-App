@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
-
 const categories = [
-    { name: 'Bedroom Furniture', imageUrl: 'https://mywayneshome.com/cdn/shop/files/media_a713c2af-9e72-4304-8452-ed6f8aca5b86_grande.jpg?v=1712009056' },
-    { name: 'Living Room Furniture', imageUrl: 'https://d2kz53n3bzvihv.cloudfront.net/resized/790_395_0_255_255_255/media/gbu0/categoryxxl/image/DesktopHeader-P393_LLA005_LLA008_LLA010_A.jpg.jpeg' },
-    { name: 'Dining Room Furniture', imageUrl: 'https://furnituretogocatalogs.com/cdn/shop/products/312a1665-ce0e-4cfe-9567-7d1c55aee59f.jpg?v=1705683723' },
-    { name: 'Sofa Sets', imageUrl: 'https://m.media-amazon.com/images/I/71qKarjtXpL._AC_SL1491_.jpg' },
+    { name: 'BedRoomFurniture', imageUrl: 'https://mywayneshome.com/cdn/shop/files/media_a713c2af-9e72-4304-8452-ed6f8aca5b86_grande.jpg?v=1712009056' },
+    { name: 'LivingRoomFurniture', imageUrl: 'https://d2kz53n3bzvihv.cloudfront.net/resized/790_395_0_255_255_255/media/gbu0/categoryxxl/image/DesktopHeader-P393_LLA005_LLA008_LLA010_A.jpg.jpeg' },
+    { name: 'DiningRoomFurniture', imageUrl: 'https://furnituretogocatalogs.com/cdn/shop/products/312a1665-ce0e-4cfe-9567-7d1c55aee59f.jpg?v=1705683723' },
+    { name: 'SofaSets', imageUrl: 'https://m.media-amazon.com/images/I/71qKarjtXpL._AC_SL1491_.jpg' },
 ];
 
 export default function Categories() {
@@ -17,11 +16,10 @@ export default function Categories() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {categories.map((category, index) => (
                         <div key={index} className="bg-gray-100 p-8 rounded-lg shadow-lg flex flex-col items-center">
-                            <Link>
+                            <Link to={`/product-page?category=${category.name}`}>
                                 <img src={category.imageUrl} alt={category.name} className="w-full h-48 object-cover rounded-md mb-4" />
                                 <h3 className="text-xl font-semibold">{category.name}</h3>
                             </Link>
-                            
                         </div>
                     ))}
                 </div>
