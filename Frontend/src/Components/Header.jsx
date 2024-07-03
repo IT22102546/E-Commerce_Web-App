@@ -48,14 +48,7 @@ export default function Header() {
           >
             Categories
           </NavLink>
-          <NavLink 
-            to="/contact" 
-            className={({ isActive }) => 
-              isActive ? "text-black" : "text-white"
-            }
-          >
-            Contact Us
-          </NavLink>
+         
           <NavLink 
             to="/product-page" 
             className={({ isActive }) => 
@@ -76,6 +69,15 @@ export default function Header() {
         </div>
         
         <div className="flex space-x-8 items-center">
+
+        {currentUser && (
+            <Link to="/cart">
+              <div className="flex relative">
+              <HiShoppingBag className="mr-1" style={{ fontSize: '24px' }} />
+                 
+              </div>
+            </Link>
+          )}
           
         {currentUser ? (
                     <Dropdown arrowIcon={false} inline label={
@@ -98,14 +100,7 @@ export default function Header() {
              
                   </Link>
                 )}
-          {currentUser && (
-            <Link to="/cart">
-              <div className="flex relative">
-              <HiShoppingBag className="mr-1" style={{ fontSize: '24px' }} />
-                 
-              </div>
-            </Link>
-          )}
+          
         </div>
       </div>
     </Navbar>

@@ -103,7 +103,7 @@ export default function OrderSummary() {
         </div>
       </div>
 
-      <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+      <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pb-5">
         <div className="px-4 pt-8 lg:pt-16">
           <h2 className="text-xl font-medium">Order Summary</h2>
           <p className="text-gray-400">
