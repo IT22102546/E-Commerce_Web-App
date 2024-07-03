@@ -46,7 +46,7 @@ export default function MostPopularProducts() {
                 <img src={product.mainImage} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
                 <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
               </Link>
-              <p className="text-lg font-bold text-blue-600">{product.price}</p>
+              <p className="text-lg font-bold text-blue-600">Rs. {product.price}</p>
               <p className="text-md text-gray-600">{product.description}</p>
             </div>
           ))}
