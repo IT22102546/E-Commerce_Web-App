@@ -20,7 +20,7 @@ export default function CategoryPage() {
 
     fetchProductsByCategory('BedRoomFurniture', setBedRoomFurniture);
     fetchProductsByCategory('LivingRoomFurniture', setLivingRoomFurniture);
-    fetchProductsByCategory('DiningRoomFurniture', setDiningRoomFurniture);
+    fetchProductsByCategory('DinningRoomFurniture', setDiningRoomFurniture);
     fetchProductsByCategory('SofaSets', setSofaSets);
   }, []);
 
