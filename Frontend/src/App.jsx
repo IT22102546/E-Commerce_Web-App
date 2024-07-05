@@ -17,6 +17,8 @@ import UpdateOrder from './Pages/UpdateOrder';
 import CheckoutSuccess from './Pages/CheckoutSuccess';
 import Categories from './Components/Categories';
 import CategoryPage from './Pages/CategoryPage';
+import ForgetPassword from './Pages/ForgetPassword';
+import ResetPassword from './Pages/ResetPassword';
 
 export default function App() {
   return (
@@ -30,7 +32,8 @@ export default function App() {
         <Route path="/" element={<Categories />} />
         <Route path="/product/:productSlug" element={<PostProduct />} />
         <Route path="/category" element={<CategoryPage />} />
-
+        <Route path="/forgetPassword" element={<ForgetPassword/>}/>
+        <Route path="/resetpassword/:id/:token" element={<ResetPassword/>} />
 
         <Route element={<PrivateRoute/>}/>
           <Route path="/dashboard" element={<DashBoard/>}/> 
