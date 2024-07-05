@@ -9,8 +9,8 @@ const categories = [
 
 export default function Categories() {
     return (
-        <div className="bg-gray-50 py-16">
-            <div className="container mx-auto px-4">
+        <div className="bg-slate-200 py-16 w-full">
+            <div className="mx-auto px-4 relative">
                 <h2 className="text-3xl font-bold text-center mb-3">View Our Range Of Categories</h2>
                 <p className="text-md text-gray-600 text-center mb-8">Check out some of our Categories. These top sellers are loved by our customers!</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

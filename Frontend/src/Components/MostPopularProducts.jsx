@@ -26,8 +26,8 @@ export default function MostPopularProducts() {
   }
 
   return (
-    <div className="bg-white py-16">
-      <div className="container mx-auto px-4">
+    <div className="bg-slate-200 py-16 w-full">
+      <div className="relative mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <div>
             <h2 className="text-3xl font-bold">Most Popular Products</h2>
