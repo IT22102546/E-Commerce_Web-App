@@ -17,6 +17,7 @@ const CarouselComponent = () => {
     height: '500px',
     objectFit: 'cover', 
   };
+  
 
   return (
     <Carousel 
