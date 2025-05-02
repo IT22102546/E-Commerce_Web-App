@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import userRoute from "./routes/user.route.js"
 import orderRoute from "./routes/order.route.js"
 import stripe from "./routes/stripe.route.js";
+import recomandation from "./routes/reccomandation.route.js";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use("/api/user",userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/order",orderRoute);
 app.use("/api/stripe",stripe);
+app.use("/api/recommendation",recomandation);
 
 
 
